@@ -79,7 +79,7 @@ export default [
     rules: { ...reglesDeBase }
   },
   {
-    files: ["public/js/**/*.js"],
+    files: ["**/public/js/**/*.js"],
     languageOptions: {
       ecmaVersion: "latest",
       sourceType: "module",
