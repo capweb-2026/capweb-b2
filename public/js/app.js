@@ -53,8 +53,8 @@ formulaire?.addEventListener(`submit`, (event) => {
   }else{
       const message_envoye = validation.value
       const reponse = replyTo(message_envoye)
-      historique.push({ role: 'user', content: message_envoye })
-      historique.push({ role: 'assistant', content: reponse })
+      historique.push({ role: 'user', Text: message_envoye })
+      historique.push({ role: 'assistant', text: reponse })
       localStorage.setItem('capweb.historique',JSON.stringify(historique))
       renderMessages(historique, messages)
       // Remise à zéro du formulaire
