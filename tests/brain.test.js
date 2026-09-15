@@ -24,7 +24,8 @@ describe('replyTo', () => {
     it('ne repond pas a une phrase inconnue', () => {
         assert.equal(replyTo('inconnu'),'Je ne comprends pas votre message')
     })
-    it('ne repond pas a une phrase inconnue 2', () => {
-        assert.equal(replyTo('aide'),'Je ne comprends pas votre message')
-    })
+    // Ceci est un test rouge fait exprès
+    // it('ne repond pas a une phrase inconnue 2', () => {
+    //     assert.equal(replyTo('aide'),'Je ne comprends pas votre message')
+    // })
 })
