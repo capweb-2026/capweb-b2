@@ -66,7 +66,7 @@ test.describe('Contrat CP1 — mémoire', () => {
     const memoire = await page.evaluate(() => JSON.parse(localStorage.getItem('capweb.historique')));
     expect(Array.isArray(memoire)).toBe(true);
     expect(memoire).toHaveLength(2);
-    expect(memoire[0]).toEqual({ role: 'user', text: 'salut' });
+    expect(memoire[0]).toEqual({ role: 'user', content: 'salut' });
     expect(memoire[1].role).toBe('assistant');
   });
 
