@@ -3,10 +3,10 @@ export function renderMessages(messages, container){
         const li = document.createElement('li')
         if(message.role === 'user'){
             li.dataset.role = "user";
-            li.textContent = `Vous : ${message.content}`
+            li.textContent = `Vous : ${message.text}`
         }else if(message.role === 'assistant'){
             li.dataset.role = "assistant";
-            li.textContent = `Cap Web : ${message.content}`
+            li.textContent = `Cap Web : ${message.text}`
         }
         return li
     })
