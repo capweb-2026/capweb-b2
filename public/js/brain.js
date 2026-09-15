@@ -3,7 +3,7 @@ export function validateMessage(raw){
         return { ok: false, error: "Le message n'est pas une chaine de caractère" }
     }else if(raw.trim().length <= 0){
         return { ok: false, error: "Le message est vide" }
-    }else if(raw.length > 280){
+    }else if(raw.trim().length > 280){
         return { ok: false, error: "Le message fait plus de 280 caractères" }
     }
     return { ok: true, value: raw.trim() }
