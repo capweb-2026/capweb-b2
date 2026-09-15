@@ -6,7 +6,7 @@ export function renderMessages(messages, container){
             li.textContent = `Vous : ${message.text}`
         }else if(message.role === 'assistant'){
             li.dataset.role = "assistant";
-            li.textContent = `Cap Web : ${message.text}`
+            li.textContent = `Vélix : ${message.text}`
         }
         return li
     })

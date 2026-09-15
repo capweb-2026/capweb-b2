@@ -1,5 +1,6 @@
 import { validateMessage,replyTo } from './brain.js';
 import { renderMessages } from './view.js';
+import { persona } from './persona.js';
 
 const formulaire = document.querySelector('#chat-form');
 const statut = document.querySelector('#status');
@@ -15,6 +16,31 @@ const compteur = document.querySelector('#compteur');
 
 // Ceci est l'historique des messages utilisateur et chatbot
 const historique = []
+
+// Accueil et suggestions Vélix, hors de #messages.
+const accueil = document.querySelector('#accueil');
+const suggestions = document.querySelector('#suggestions');
+
+function afficherAccueil() {
+  if (accueil) {
+    accueil.textContent = persona.accueil;
+    accueil.hidden = historique.length > 0;
+  }
+  if (suggestions) {
+    suggestions.replaceChildren(
+      ...persona.suggestions.map((texte) => {
+        const bouton = document.createElement('button');
+        bouton.type = 'button';
+        bouton.textContent = texte;
+        bouton.addEventListener('click', () => {
+          message.value = texte;
+          message.focus();
+        });
+        return bouton;
+      })
+    );
+  }
+}
 
 //Ceci est le bouton pour effacer la conversation
 const effacer = document.querySelector('#effacer');
@@ -32,12 +58,14 @@ if(historique_sauvegarde){
     statut.textContent = "La conversation sauvegardée est invalide. Une nouvelle conversation a été créée."
   }
 }
+afficherAccueil();
 
 effacer?.addEventListener('click', () => {
   if(confirm("Voulez-vous vraiment effacer la conversation ?")){
     historique.length = 0
     localStorage.removeItem('capweb.historique')
     renderMessages(historique, messages)
+    afficherAccueil()
     statut.textContent = "La conversation a été effacée."
   }
 })
@@ -57,6 +85,7 @@ formulaire?.addEventListener(`submit`, (event) => {
       historique.push({ role: 'assistant', text: reponse })
       localStorage.setItem('capweb.historique',JSON.stringify(historique))
       renderMessages(historique, messages)
+      afficherAccueil()
       // Remise à zéro du formulaire
       message.value = ''
       statut.textContent = ''
