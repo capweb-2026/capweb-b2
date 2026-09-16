@@ -8,7 +8,7 @@ export const persona = {
     'Comment entretenir ma chaîne ?'
   ]
 };
-
+ 
 export function validatePersona(candidate) {
   const erreurs = [];
   const cible = candidate ?? {};
