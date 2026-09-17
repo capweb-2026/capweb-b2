@@ -1,4 +1,4 @@
-export function validateMessage(raw){
+function validerMessageStrict(raw){
     if(typeof raw !== 'string'){
         return { ok: false, error: "Le message n'est pas une chaine de caractère" }
     }else if(raw.trim().length <= 0){
@@ -20,4 +20,17 @@ export function replyTo(message){
         return 'Test réussi'
     }
     return 'Je ne comprends pas votre message'
+}
+
+// Tolérance : un message à peine trop long (jusqu'à 300 caractères) reste accepté.
+export function validateMessage(raw) {
+  const resultat = validerMessageStrict(raw);
+  if (resultat.ok || typeof raw !== 'string') {
+    return resultat;
+  }
+  const value = raw.trim();
+  if (value !== '' && value.length <= 300) {
+    return { ok: true, value };
+  }
+  return resultat;
 }
